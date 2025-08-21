@@ -1,0 +1,83 @@
+body {
+    font-family: system-ui, Arial, sans-serif;
+    margin: 0;
+}
+
+#mainNav {
+    position: absolute;
+    /* fica por cima do hero */
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent !important;
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+    z-index: 10;
+    padding: 0.5rem 0;
+    /* pode ajustar a altura aqui */
+}
+
+/* Marca (título) clara por cima da imagem */
+#mainNav .navbar-brand {
+    color: #fff !important;
+    font-weight: 700; }
+
+nav a {
+    margin-right: 1rem;
+    text-decoration: none;
+}
+
+
+
+form>div {
+    margin-bottom: 0.75rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Flash messages */
+.flash {
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+}
+
+.flash.success {
+    background: #e6ffed;
+    border: 1px solid #b7ebc6;
+    color: #22543d;
+}
+
+/* Hero (Clean Blog override) */
+header.masthead {
+    border: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Para telas grandes, mantemos o hero alto (ajuste se quiser) */
+@media (min-width: 992px) {
+    header.masthead {
+        padding-top: 9rem;
+        padding-bottom: 9rem;
+    } }
+
+/* Cards - links mais discretos */
+.card .card-title a {
+    color: inherit;
+}
+
+.card .card-title a:hover {
+    text-decoration: underline;
+}
+
+/* Footer — centralizado + linha superior */
+footer {
+    padding: 1rem;
+    text-align: center;
+    color: #666;
+    background: #f8f9fa;
+    border-top: 1px solid #666;
+    /* a linha que você quer */
+    margin-top: 2rem; }

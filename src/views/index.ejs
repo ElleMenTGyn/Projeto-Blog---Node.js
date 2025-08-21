@@ -1,0 +1,58 @@
+
+
+
+<%- include("partials/header", { pageTitle: "Posts" }) %>
+  <%- include("partials/hero") %>
+
+  <main class="container px-4 px-lg-5">
+    <!-- título + botão novo post -->
+    <div class="d-flex align-items-center mt-5 mb-3">
+      <h2 class="mb-0">Posts</h2>
+      <a href="/posts/new" class="btn btn-primary ms-auto">
+        <i class="bi bi-plus-circle"></i> Novo post
+      </a>
+    </div>
+  
+    <!-- flash (mantido do seu código) -->
+    <% if (typeof success !== 'undefined' && success) { %>
+      <p class="flash success"><%= success %></p>
+    <% } %>
+  
+    <% if (!posts || posts.length === 0) { %>
+      <div class="text-center py-5">
+        <p class="mb-2">Nenhum post ainda.</p>
+        <a href="/posts/new" class="btn btn-primary">
+          <i class="bi bi-plus-circle"></i> Criar primeiro post
+        </a>
+      </div>
+    <% } else { %>
+      <!-- grade de cards -->
+      <div class="row g-4 row-cols-1 row-cols-md-2">
+        <% posts.forEach(function(p){ 
+             var plain  = String(p.content || '').replace(/<[^>]*>/g,''); // tira HTML
+             var excerpt = plain.length > 180 ? plain.slice(0,180) + '…' : plain;
+        %>
+          <div class="col">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title mb-1">
+                  <a href="/posts/<%= p.id %>" class="stretched-link text-decoration-none">
+                    <%= p.title %>
+                  </a>
+                </h5>
+                <p class="text-muted small mb-2">
+                  por <%= p.author || 'Anônimo' %> — 
+                  <%= (typeof formatDate === 'function')
+                      ? formatDate(p.createdAt)
+                      : new Date(p.createdAt).toLocaleDateString('pt-BR') %>
+                </p>
+                <p class="card-text"><%= excerpt %></p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </main>
+
+<%- include("partials/footer") %>

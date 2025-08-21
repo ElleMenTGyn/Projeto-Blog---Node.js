@@ -1,0 +1,55 @@
+
+
+<%- include('partials/header', { pageTitle: 'Novo Post' }) %>
+<%- include('partials/hero') %>
+
+<main class="container px-4 px-lg-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+      <div class="card shadow-sm mt-5">
+        <div class="card-body p-4 p-lg-5">
+          <h2 class="mb-4">Criar Post</h2>
+
+          <% if (typeof errors !=='undefined' && errors.length) { %>
+            <div class="alert alert-danger">
+              <ul class="mb-0">
+                <% errors.forEach(e=> { %><li>
+                    <%= e %>
+                  </li>
+                  <% }) %>
+              </ul>
+            </div>
+            <% } %>
+
+              <form action="/posts" method="POST" class="vstack gap-3">
+                <div>
+                  <label for="author" class="form-label">Autor</label>
+                  <input id="author" name="author" type="text" required
+                    value="<%= (values && values.author) ? values.author : '' %>" class="form-control">
+                </div>
+
+                <div>
+                  <label for="title" class="form-label">Título</label>
+                  <input id="title" name="title" type="text" required autofocus
+                    value="<%= (values && values.title) ? values.title : '' %>" class="form-control">
+                </div>
+
+                <div>
+                  <label for="content" class="form-label">Conteúdo</label>
+                  <textarea id="content" name="content" rows="8" required
+                    class="form-control"><%= (values && values.content) ? values.content : '' %></textarea>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <a href="/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Voltar</a>
+                  <button type="submit" class="btn btn-primary ms-auto"><i class="bi bi-save"></i> Criar Post</button>
+                </div>
+              </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
